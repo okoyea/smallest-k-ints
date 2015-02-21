@@ -16,14 +16,14 @@ end
 
 class Array
   def median_of_medians(array = self, k)
-    return select_index(array, k) if (array.length <= 5)
+    return median_of_5(array, k) if array.length <= 5
 
     medians = []
     left = []
     right = []
 
     array.each_slice(5) do |slice|
-      medians << select_index(slice, slice.length/2)
+      medians << median_of_5(slice, slice.length/2)
     end
 
     median = median_of_medians(medians, medians.length/2)
@@ -47,7 +47,7 @@ class Array
     end
   end
 
-  def select_index(array, k)
+  def median_of_5(array, k)
     array.sort[k - 1]
   end
 end
